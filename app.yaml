@@ -1,4 +1,4 @@
-application: tomahawkbar
+application: tomahawkletdebug
 version: 50
 runtime: python
 api_version: 1
