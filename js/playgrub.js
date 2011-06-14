@@ -671,6 +671,7 @@ Playgrub.Player.prototype = {
         Playdar.USE_STATUS_BAR = false;
         Playdar.MAX_CONCURRENT_RESOLUTIONS = 15;
         Playdar.MAX_POLLS = 6;
+        Playdar.USE_JSONP = false;
         Playdar.auth_details.receiverurl = Playgrub.PGHOST+'static/playdar_auth.html';
         Playdar.setupClient({
 
