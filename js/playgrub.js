@@ -384,7 +384,7 @@ Playgrub.Content = function() {
         +"<div id='playgrub-bookmarklet-links'>"
         +"<span style='margin-right: 10px;'>Send to:</span>"
         +"<span class='playgrub-clickable playgrub-link' onClick='window.open(\""+Playgrub.Util.playlick_link(Playgrub.playlist.xspf_url())+"\");'>Tomahawk</span>"
-        +"<span class='playgrub-clickable playgrub-link' onClick='window.open(\""+Playgrub.playlist.xspf_url()+"\");'>or Download XSPF</span>"
+        +"<span class='playgrub-clickable playgrub-link' onClick='window.open(\""+Playgrub.playlist.xspf_url()+"\");'>(or Download XSPF)</span>"
         +"</div>";
     };
 
@@ -500,7 +500,10 @@ Playgrub.XSPFSource = function(xspf_url) {
         Playgrub.playlist.xspf = Playgrub.source.url;
         Playgrub.playlist.title = jplaylist.title;
         // Playgrub.playlist.id = rplaylist.id;
-        for(n in jplaylist.trackList.track) {
+	if (!(jplaylist.trackList.track instanceof Array)) {
+ 	jplaylist.trackList.track = [jplaylist.trackList.track];
+	}        
+	for(n in jplaylist.trackList.track) {
             Playgrub.playlist.add_track(jplaylist.trackList.track[n].creator,jplaylist.trackList.track[n].title);
         }
         Playgrub.Events.foundSongs();
@@ -614,7 +617,7 @@ Playgrub.Player.prototype = {
     play_track: function() {
         if(!$(this).hasClass('playgrub-playlist-track-resolved')) {
             var keywords = $(this).text().replace(/-/g,'\+');
-            window.open('http://www.amazon.com/gp/search?ie=UTF8&keywords='+keywords+'&tag=playgrub-20&index=digital-music&linkCode=ur2&camp=1789&creative=9325');
+            window.open('http://www.amazon.com/gp/search?ie=UTF8&keywords='+keywords+'&tag=tomahawklet-20&index=digital-music&linkCode=ur2&camp=1789&creative=9325');
             return false;
         }
         // toggle play button
@@ -671,19 +674,18 @@ Playgrub.Player.prototype = {
         Playdar.USE_STATUS_BAR = false;
         Playdar.MAX_CONCURRENT_RESOLUTIONS = 15;
         Playdar.MAX_POLLS = 6;
-        Playdar.USE_JSONP = false;
         Playdar.auth_details.receiverurl = Playgrub.PGHOST+'static/playdar_auth.html';
         Playdar.setupClient({
 
             onStat: function (detected) {
                 if (detected) {
                     if (!detected.authenticated) {
-                        var connect_link = Playdar.client.get_auth_link_html('Connect to Playdar');
+                        var connect_link = Playdar.client.get_auth_link_html('Connect to Tomahawk');
                         Playgrub.player.playdar_status = connect_link;
                         Playgrub.content.display_playdar_status(connect_link);
                     }
                 } else {
-                    var playdar_not = "<a href='http://www.playdar.org/download/' target='_blank'>Playdar not available</a>";
+                    var playdar_not = "<a href='http://www.gettomahawk.com/download/' target='_blank'>Tomahawk not available</a>";
                     Playgrub.player.playdar_status = playdar_not;
                     Playgrub.content.display_playdar_status(playdar_not);
                 }
@@ -691,9 +693,9 @@ Playgrub.Player.prototype = {
 
             // Called when the browser is authorised to query Playdar.
             onAuth: function () {
-                Playgrub.player.playdar_status = Playdar.client.get_disconnect_link_html('Disconnect from Playdar');
+                Playgrub.player.playdar_status = Playdar.client.get_disconnect_link_html('Disconnect from Tomahawk');
                 if(typeof(Playgrub.content) != 'undefined')
-                    Playgrub.content.display_playdar_status(Playdar.client.get_disconnect_link_html('Disconnect from Playdar'));
+                    Playgrub.content.display_playdar_status(Playdar.client.get_disconnect_link_html('Disconnect from Tomahawk'));
                 Playgrub.player.resolve_current_playlist();
             },
 
@@ -784,11 +786,11 @@ Playgrub.Util = {
     },
 
     playlick_link: function(xspf) {
-        return "tomahawk://load/xspf="+xspf;
+        return "tomahawk://load/?xspf="+xspf;
     },
 
     spiffdar_link: function(xspf) {
-        return "tomahawk://load/xspf="+encodeURIComponent(xspf);
+        return "tomahawk://load/?xspf="+encodeURIComponent(xspf);
     },
 
     playgrub_link: function(xspf) {
