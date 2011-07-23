@@ -1,6 +1,6 @@
 Playgrub = {
-    PGHOST: 'http://tomahawkbar.appspot.com/',
-    VERSION: '0.9.4',
+    PGHOST: 'http://tomahawkletdebug.appspot.com/',
+    VERSION: '0.9.5',
     playlist: {},
     client: {},
     player: {},
