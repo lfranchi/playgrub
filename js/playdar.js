@@ -594,7 +594,8 @@ Playdar.SM2Player.MIMETYPES = {
     "audio/m4a": true,
     "audio/x-m4a": true,
     "audio/x-m4b": true,
-    "audio/x-wav": true,
+    "audio/x-wav": false,
+    "audio/wav": false,
     "video/mp4": true,
     "video/mov": true,
     "video/quicktime": true,
@@ -623,16 +624,12 @@ Playdar.SM2Player.prototype = {
             this.soundmanager.onready(onready);
         }
         this.soundmanager.onready(function() {
-          for (var mime in Playdar.SM2Player.MIMETYPES) {
-              Playdar.SM2Player.MIMETYPES[mime] = soundmanager.canPlayMIME(mime);
-          }
         });
         this.soundmanager.beginDelayedInit();
     },
     getMimeTypes: function () {
         var mime_types = [];
         for (var type in Playdar.SM2Player.MIMETYPES) {
-            if (Playdar.SM2Player.MIMETYPE[type])
               mime_types.push(type);
         }
         return mime_types;
@@ -661,7 +658,6 @@ Playdar.SM2Player.prototype = {
         var sound_options = Playdar.Util.extendObject({
             id: 's_' + result.sid,
             url: url,
-            isMovieStar: isMovieStar,
             useVideo: true,
             bufferTime: 2
         }, options);
