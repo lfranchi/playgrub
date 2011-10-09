@@ -12,11 +12,9 @@ Playgrub.source.url = 'http://.*\.shazam.com/music/web.*';
 Playgrub.source.error = 'Sorry, no tracks were found.'
 Playgrub.source.scrape = function() {
 
-       $(".column-right").each(function() {
-        var artist = $(this).find('h2').text();
-        var song = $(this).find('h3.title').text();
-
-	
+      $("div.column-right").each(function() {
+        var song = $.trim($(this).find('h2').text());
+        var artist = $.trim($(this).find('h3').text());	
 
        Playgrub.playlist.add_track(artist, song);
     });
