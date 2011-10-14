@@ -1,14 +1,14 @@
 /**
- * This is My Jam Tomahawklet Scraper
+ * Turntable.fm Tomahawklet Scraper
  * Created by: J Herskowitz <jherskowitz AT globallistic DOT com>
  * Version: 0.1
  *
  * Notes:
  *
- * This scraper will work on Rhapsody.com playlist pages.
+ * This scraper will work on Turntable.fm rooms.
  */
-Playgrub.source.url = 'http://.*\.thisismyjam.com.*';
-Playgrub.source.error = 'Check your This is My Jam page - only playlist pages are supported.'
+Playgrub.source.url = 'http://.*\.turntable.fm.*';
+Playgrub.source.error = 'Check your Turntable.fm page - only rooms are supported.'
 Playgrub.source.scrape = function() {
 
 $("div.songinfo").each(function() {
