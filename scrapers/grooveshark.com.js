@@ -1,6 +1,6 @@
 /**
  * Grooveshark Playgrub.source
- * Created by: jherskowitz <jherskowitz AT globallistic DOT com>
+ * Created by: alastairp
  * Version: 0.1
  *
  * Notes:
@@ -11,11 +11,16 @@
 Playgrub.source.url = 'http://grooveshark\.com/\#/playlist/\.*';
 Playgrub.source.error = "Check your Grooveshark page, Tomahawklet only works on playlists.";
 Playgrub.source.scrape = function() {
- $("div.slick-cell").each(function() {
-        var song = $.trim($(this).find('a.songLink').text());
-        var artist = $.trim($(this).find('a.field').text());
-        Playgrub.playlist.add_track(song_result[1], song_result[0]);
-    });
+ artists = [];
+ albums = [];
+ songs = [];
+$("div.slick-cell.album").each(function() { albums.push($(this).find('a').text())});
+$("div.slick-cell.artist").each(function() { artists.push($(this).find('a').text())});
+$("div.slick-cell.song").each(function() { songs.push($(this).find('a').text())});
+for (var i = 0; i < albums.length; i++) { 
+        Playgrub.playlist.add_track(artists[i], songs[i]);
+}
 }
 
 Playgrub.source.start();
+
