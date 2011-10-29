@@ -8,7 +8,7 @@
  * This scraper will work on NPR "rundown" pages.
  */
 Playgrub.source.url = 'http://.*\.npr.org/templates/rundowns.*';
-Playgrub.source.error = 'Check your This is My Jam page - only playlist pages are supported.'
+Playgrub.source.error = 'Check your NPR page - only playlist pages are supported.'
 Playgrub.source.scrape = function() {
 
 $("tr").each(function() {

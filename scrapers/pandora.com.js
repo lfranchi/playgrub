@@ -12,12 +12,10 @@ Playgrub.source.url = 'http://\www.pandora.com\/\#\/\music/\song.*';
 Playgrub.source.error = 'Sorry, no tracks were found.'
 Playgrub.source.scrape = function() {
 
-    $("div.column-right").each(function() {
-        var song = $.trim($(this).find('h2').text());
-        var artist = $.trim($(this).find('h3').text());
-        console.log(song + ' - ' + artist);
-});
-
+  $("div.song_detail").each(function() {
+    var song = $(this).find('div.header h1').text();
+    var artist = $(this).find('div.artist_name a.artist_link').text();
+ 
 	
 
        Playgrub.playlist.add_track(artist, song);
