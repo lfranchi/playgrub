@@ -12,9 +12,9 @@ Playgrub.source.url = 'http://.*\.8tracks.com.*';
 Playgrub.source.error = 'Sorry, no tracks were found.'
 Playgrub.source.scrape = function() {
 
- $('li.favable').each(function() {
-        var artist = $(this).find('span.a').text();
-        var song = $(this).find('span.t').text().trim();
+$("li.track").each(function() {
+  var song = $.trim($(this).find('span.t').text());
+        var artist = $.trim($(this).find('span.a').text());
         
        Playgrub.playlist.add_track(artist, song);
     });
