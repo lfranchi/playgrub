@@ -54,13 +54,13 @@ Playgrub.source.scrape = function () {
             }
         }
     });
-   $(":regex(itemtype,http://www.schema.org/MusicRecording)").each(function () {
+   $(":regex(itemtype,http://.*schema.org/MusicRecording)").each(function () {
         if ($(this).attr("itemprop") === "tracks") {
             var track = {};
             track.title = $.trim($(this).find(":regex(itemprop,name)").text());
             track.artist = $.trim($(":regex(itemprop,byArtist)").text());
             if (!track.artist) {
-                track.artist = $.trim($(":regex(itemtype,http://schema.org/MusicGroup) :regex(itemprop,name)").text());
+                track.artist = $.trim($(":regex(itemtype,http://.*schema.org/MusicGroup) :regex(itemprop,name)").text());
             }
             if (track.artist && track.title && track.artist !== "" && track.title !== "") {
                 Playgrub.playlist.add_track(track.artist, track.title);
