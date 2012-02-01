@@ -17,7 +17,7 @@ from models import PlaylistTrack
 from models import PlaygrubAccount
 from models import PlaygrubChartEntry
 
-pghost = "http://tomahawkbar.appspot.com/"
+pghost = "http://tomahawkletdebug.appspot.com/"
 
 class IndexHandler(webapp.RequestHandler):
 
