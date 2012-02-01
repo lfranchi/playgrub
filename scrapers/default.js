@@ -36,7 +36,7 @@ jQuery.expr[':'].regex = function(elem, index, match) {
 };
 
 Playgrub.source.url = '.*';
-Playgrub.source.error = 'Sorry, no suitable haudio tags could be found on this page.';
+Playgrub.source.error = 'Sorry, no suitable haudio tags could be found on this page';
 Playgrub.source.scrape = function () {
     $(".haudio").each(function () {
         var item = $(this).find('.item');
@@ -54,7 +54,6 @@ Playgrub.source.scrape = function () {
             }
         }
     });
-    console.log($(":regex(itemtype,http://www.schema.org/MusicRecording)").length);
    $(":regex(itemtype,http://www.schema.org/MusicRecording)").each(function () {
         if ($(this).attr("itemprop") === "tracks") {
             var track = {};
