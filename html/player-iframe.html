@@ -58,12 +58,13 @@ Playgrub.Util.load_remotes( [
 
 // setup soundManager2
 soundManager.waitForWindowLoad = true;
-soundManager.url = '/static/soundmanager2_flash9.swf';
+soundManager.url = '/static/soundmanager2_flash9_debug.swf';
 soundManager.flashVersion = 9;
 soundManager.useMovieStar = true;
 soundManager.consoleOnly = true;
-soundManager.debugMode = false;
+soundManager.debugMode = true;
 soundManager.flashLoadTimeout = 0;
+soundManager.useHTML5Audio = true;
 
 </script>
 <link rel="stylesheet" type="text/css" href="css/player.css" />
