@@ -12,11 +12,11 @@ Playgrub.source.url = 'http://.*\.ex.fm.*';
 Playgrub.source.error = 'Sorry, no tracks were found.'
 Playgrub.source.scrape = function() {
 
-    $("div.song_row_metadata").each(function() {
-        var artist = $(this).find('div.song_row_artist a').text();
-        var song = $(this).find('a.song_row_title').text();
-var album = $(this).find('div.song_row_artist span').text();
-	
+$("div.song_row_metadata").each(function() {
+ var song = $(this).find('a.song_row_title').text();
+var album = $(this).find('div a.song_row_artist span').text();
+
+var artist = $(this).find('div.song_row_artist_wrapper a.song_row_artist').text();
 
        Playgrub.playlist.add_track(artist, song);
     });
