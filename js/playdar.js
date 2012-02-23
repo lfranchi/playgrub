@@ -641,21 +641,12 @@ Playdar.SM2Player.prototype = {
         this.results[result.sid] = result;
 
         var url = options.external ? result.url : Playdar.client.get_stream_url(result.sid);
-        var isMp3 = url.match(this.soundmanager.filePatterns.flash8);
-        var isNetStream = url.match(this.soundmanager.netStreamPattern);
-        var isMovieStar;
-        if (isMp3) {
-            isMovieStar = false;
-        } else {
-            isMovieStar = (isNetStream ? true : false) || Playdar.SM2Player.MIMETYPES[result.mimetype];
-        }
-
         var sound_options = Playdar.Util.extendObject({
             id: 's_' + result.sid,
             url: url,
-            isMovieStar: isMovieStar,
             useVideo: true,
-            bufferTime: 2
+            bufferTime: 2,
+            type: result.mimetype
         }, options);
 
         var callbackOptions = [options];
